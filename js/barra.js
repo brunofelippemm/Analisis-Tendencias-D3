@@ -26,6 +26,7 @@ d3.csv(url, function (error, data) {
     throw error;
   }
 
+  // OLD CODE START FROM HERE
   //Eliminamos puntos y Cambiamos tipo de dato
   data.forEach(function (d) {
     d.Valor = parseFloat(d.Valor.replace(/\./g, ""));
@@ -43,11 +44,14 @@ d3.csv(url, function (error, data) {
     })
   );
 
+  // Valores de X
   x.domain(
     dataFltr.map(function (d) {
       return d.Anio;
     })
   );
+
+  // Valores de Y
   y.domain([
     1200000,
     d3.max(dataFltr, function (d) {
@@ -55,52 +59,130 @@ d3.csv(url, function (error, data) {
     }),
   ]);
 
-  g.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
-    .append("text")
-    .attr("y", height - 360)
-    .attr("x", width - 300)
-    .attr("text-align", "justify")
-    .attr("stroke", "black")
-    .attr("font-size", "20px")
-    .text("Año");
+  // Rellenar el combobox con los años
+  d3.select("#anioDeCrimen")
+  .selectAll('myOptions')
+   .data(dataFltr.map(function (d) {
+    return d.Anio;
+   }))
+  .enter()
+  .append('option')
+  .text(function (d) { return d; })
+  .attr("value", function (d) { return d; })
 
-  g.append("g")
-    .call(
-      d3
-        .axisLeft(y)
-        .tickFormat(function (d) {
-          return d.toString().replace(expr, ",");
-        })
-        .ticks(10)
-    )
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("x", -120)
-    .attr("y", 0)
-    .attr("dy", "-3.4em")
-    .attr("stroke", "black")
-    .attr("font-size", "20px")
-    .text("Denuncias, datos acumulados");
+  // TODO Grafica de puntos
+  var margin = {top: 10, right: 100, bottom: 30, left: 30},
+  width = 460 - margin.left - margin.right,
+  height = 400 - margin.top - margin.bottom;
 
-  g.selectAll(".bar")
-    .data(dataFltr)
-    .enter()
-    .append("rect")
-    .attr("class", "bar")
-    .on("mouseover", onMouseOver)
-    .on("mouseout", onMouseOut)
-    .attr("x", function (d) {
-      return x(d.Anio);
+// agregar el SVG al objeto del body de la pagina
+var svg = d3.select("#graficaPuntos")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+  // agregar el eje de las X
+  svg.append("g")
+     .attr("transform", "translate(0," + height + ")")
+     .call(d3.axisBottom(x));
+
+  // agregar el eje de las Y
+
+  // TO DO! CONTINUE ADDING CODE HERE
+  svg.append("g")
+     .call(d3.axisLeft(y))
+     .append("text")
+     .text("Denuncias acumuladas")
+
+     var line = svg
+     .append('g')
+     .append("path")
+       .datum(dataFltr)
+       .attr("d", d3.line()
+         .x(function(d) { return x(+d.Anio) })
+         .y(function(d) { return y(+d.Valor) })
+       )
+       .attr("stroke", function(d){ return myColor("valueA") })
+       .style("stroke-width", 4)
+       .style("fill", "none")
+
+          // A function that update the chart
+    function update(selectedGroup) {
+
+      // Create new data with the selection?
+      //var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+
+      // Give these new data to update line
+      line
+          .datum(dataFltr)
+          .transition()
+          .duration(1000)
+          .attr("d", d3.line()
+            .x(function(d) { return x(+d.Anio) })
+            .y(function(d) { return y(+d.Valor) })
+          )
+          .attr("stroke", function(d){ return myColor(selectedGroup) })
+    }
+
+    // When the button is changed, run the updateChart function
+    d3.select("#anioDeCrimen").on("change", function(d) {
+        // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value")
+        // run the updateChart function with this selected option
+        update(selectedOption)
     })
-    .attr("y", function (d) {
-      return y(d.Valor);
-    })
-    .attr("width", x.bandwidth())
-    .attr("height", function (d) {
-      return height - y(d.Valor);
-    });
+
+  // Termina grafica de puntos
+
+  // g.append("g")
+  //   .attr("transform", "translate(0," + height + ")")
+  //   .call(d3.axisBottom(x))
+  //   .append("text")
+  //   .attr("y", height - 360)
+  //   .attr("x", width - 300)
+  //   .attr("text-align", "justify")
+  //   .attr("stroke", "black")
+  //   .attr("font-size", "20px")
+  //   .text("Año");
+
+  // g.append("g")
+  //   .call(
+  //     d3
+  //       .axisLeft(y)
+  //       .tickFormat(function (d) {
+  //         return d.toString().replace(expr, ",");
+  //       })
+  //       .ticks(10)
+  //   )
+  //   .append("text")
+  //   .attr("transform", "rotate(-90)")
+  //   .attr("x", -120)
+  //   .attr("y", 0)
+  //   .attr("dy", "-3.4em")
+  //   .attr("stroke", "black")
+  //   .attr("font-size", "20px")
+  //   .text("Denuncias, datos acumulados");
+
+  // g.selectAll(".bar")
+  //   .data(dataFltr)
+  //   .enter()
+  //   .append("rect")
+  //   .attr("class", "bar")
+  //   .on("mouseover", onMouseOver)
+  //   .on("mouseout", onMouseOut)
+  //   .attr("x", function (d) {
+  //     return x(d.Anio);
+  //   })
+  //   .attr("y", function (d) {
+  //     return y(d.Valor);
+  //   })
+  //   .attr("width", x.bandwidth())
+  //   .attr("height", function (d) {
+  //     return height - y(d.Valor);
+  //   });
 });
 
 //funcion de mouseover

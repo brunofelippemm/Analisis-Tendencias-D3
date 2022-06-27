@@ -11,3 +11,8 @@
   font-family: sans-serif;
   font-weight: bold;
 }
+
+select { 
+  width: 220px; 
+  text-align-last: center; 
+}
