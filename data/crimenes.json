@@ -1,0 +1,32 @@
+[
+    {
+      "name": "Mexico",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "26340"},
+        {"Fecha": "2018", "TotalCrimenes": "29340"},
+        {"Fecha": "2019", "TotalCrimenes": "24329"},
+        {"Fecha": "2020", "TotalCrimenes": "27410"},
+        {"Fecha": "2021", "TotalCrimenes": "23451"}
+      ]
+    },
+    {
+      "name": "Estados Unidos",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "17294"},
+        {"Fecha": "2018", "TotalCrimenes": "16374"},
+        {"Fecha": "2019", "TotalCrimenes": "16825"},
+        {"Fecha": "2020", "TotalCrimenes": "18244"},
+        {"Fecha": "2021", "TotalCrimenes": "17311"}
+      ]
+    },
+    {
+      "name": "España",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "14325"},
+        {"Fecha": "2018", "TotalCrimenes": "17410"},
+        {"Fecha": "2019", "TotalCrimenes": "15410"},
+        {"Fecha": "2020", "TotalCrimenes": "19321"},
+        {"Fecha": "2021", "TotalCrimenes": "21812"}
+      ]
+    }
+]
