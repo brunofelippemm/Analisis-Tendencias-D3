@@ -15,35 +15,37 @@ d3.json("/data/crimenes.json", function(data) {
   var radioCirculoHover = 6;
 
 
-  /* Format Data */
+  // Hacer una conversion de fecha de año a datestamp
   var parseDate = d3.timeParse("%Y");
   data.forEach(function (d) {
     d.values.forEach(function (d) {
       d.Fecha = parseDate(d.Fecha);
-      d.TotalCrimenes = +d.TotalCrimenes;
     });
   });
 
-  /* Scale */
+  // Scale de eje X -> Fecha
   var xScale = d3.scaleTime()
     .domain(d3.extent(data[0].values, d => d.Fecha))
     .range([0, width - margin]);
 
+  // Scale de eje Y -> TotalCrimenes
   var yScale = d3.scaleLinear()
     .domain([0, d3.max(data[0].values, d => d.TotalCrimenes)])
     .range([height - margin, 0]);
 
+  // Escala ordinal
   var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-  /* Add SVG */
-  var svg = d3.select("#chart").append("svg")
+  // Empezar con SVG para la creacion de la graica con los parametros definidos
+  // de ancho y alto
+  var svg = d3.select("#grafica").append("svg")
     .attr("width", (width + margin) + "px")
     .attr("height", (height + margin) + "px")
     .append('g')
     .attr("transform", `translate(${margin}, ${margin})`);
 
 
-  /* Add line into SVG */
+  // Agregar lineas SVG
   var line = d3.line()
     .x(d => xScale(d.Fecha))
     .y(d => yScale(d.TotalCrimenes));
@@ -93,7 +95,7 @@ d3.json("/data/crimenes.json", function(data) {
     });
 
 
-  /* Add circles in the line */
+  // Agregar circulos en las lineas de la grafica
   lines.selectAll("circle-group")
     .data(data).enter()
     .append("g")
@@ -137,7 +139,7 @@ d3.json("/data/crimenes.json", function(data) {
     });
 
 
-  /* Add Axis into SVG */
+  // Agregar los ejes en SVG
   var xAxis = d3.axisBottom(xScale).ticks(5);
   var yAxis = d3.axisLeft(yScale).ticks(5);
 
@@ -155,35 +157,3 @@ d3.json("/data/crimenes.json", function(data) {
     .attr("fill", "#000")
     .text("Crimenes Totales");
 });
-
-//const data = ""
-
-// Leer CSV y hacer filtraciones
-// d3.csv(csvFile, function (error, data) {
-//   if (error) {
-//     throw error;
-//   }
-
-// data.forEach(function (d) {
-//   d.Valor = parseFloat(d.Valor.replace(/\./g, ""));
-// });
-
-//   // Obtener los totales de los datos para tenerlo filtrados
-//   var dataFiltrada = data.filter(function (d) {
-//     return d.Parametro == "Total";
-//   });
-
-//   // Remover los campos Periodo y Parametro del CSV
-//   for(var v in dataFiltrada){
-//     delete dataFiltrada[v].Periodo
-//     delete dataFiltrada[v].Parametro
-//   }
-
-//   data = dataFiltrada
-//   data["name"] = "Espana"
-//   data = { "values" : data}
-//   console.log("la nueva data es:")
-//   console.log(data)
-
-//   console.log(data.values)
-// });
