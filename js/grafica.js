@@ -1,4 +1,6 @@
-d3.json("/data/crimenes.json", function(data) {
+var jsonFile = "/data/crimenes.json"
+
+d3.json(jsonFile, function(data) {
   // parametros para la grafica
   var width = 500;
   var height = 300;
@@ -11,7 +13,7 @@ d3.json("/data/crimenes.json", function(data) {
 
   // parametros para los circulos
   var opacidadCirculos = '0.9';
-  var radioCirculo = 3.5;
+  var radioCirculo = 4.0;
   var radioCirculoHover = 6;
 
 
@@ -36,7 +38,7 @@ d3.json("/data/crimenes.json", function(data) {
   // Escala ordinal
   var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-  // Empezar con SVG para la creacion de la graica con los parametros definidos
+  // Empezar con SVG para la creacion de la grafica con los parametros definidos
   // de ancho y alto
   var svg = d3.select("#grafica").append("svg")
     .attr("width", (width + margin) + "px")
@@ -155,5 +157,5 @@ d3.json("/data/crimenes.json", function(data) {
     .attr("y", 15)
     .attr("transform", "rotate(-90)")
     .attr("fill", "#000")
-    .text("Crimenes Totales");
+    .text("Crimenes");
 });
