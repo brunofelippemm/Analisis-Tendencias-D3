@@ -1,0 +1,82 @@
+[
+    {
+      "name": "Hurtos",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "536.28"},
+        {"Fecha": "2018", "TotalCrimenes": "530.15"},
+        {"Fecha": "2019", "TotalCrimenes": "529.19"},
+        {"Fecha": "2020", "TotalCrimenes": "317.53"},
+        {"Fecha": "2021", "TotalCrimenes": "349.43"}
+      ]
+    },
+    {
+      "name": "Agresion Sexual",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "1.06"},
+        {"Fecha": "2018", "TotalCrimenes": "1.3"},
+        {"Fecha": "2019", "TotalCrimenes": "1.41"},
+        {"Fecha": "2020", "TotalCrimenes": "1.23"},
+        {"Fecha": "2021", "TotalCrimenes": "1.6"}
+      ]
+    },
+    {
+      "name": "Secuestros",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "49"},
+        {"Fecha": "2018", "TotalCrimenes": "54"},
+        {"Fecha": "2019", "TotalCrimenes": "71"},
+        {"Fecha": "2020", "TotalCrimenes": "56"},
+        {"Fecha": "2021", "TotalCrimenes": "73"}
+      ]
+    },
+    {
+      "name": "Robos",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "110.27"},
+        {"Fecha": "2018", "TotalCrimenes": "112.17"},
+        {"Fecha": "2019", "TotalCrimenes": "105.06"},
+        {"Fecha": "2020", "TotalCrimenes": "79.88"},
+        {"Fecha": "2021", "TotalCrimenes": "75.45"}
+      ]
+    },
+    {
+      "name": "Trafico de drogas",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "10.11"},
+        {"Fecha": "2018", "TotalCrimenes": "10.84"},
+        {"Fecha": "2019", "TotalCrimenes": "12.69"},
+        {"Fecha": "2020", "TotalCrimenes": "12.65"},
+        {"Fecha": "2021", "TotalCrimenes": "13.94"}
+      ]
+    },
+    {
+      "name": "Sustracciones de vehiculos",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "32.47"},
+        {"Fecha": "2018", "TotalCrimenes": "26.64"},
+        {"Fecha": "2019", "TotalCrimenes": "26.17"},
+        {"Fecha": "2020", "TotalCrimenes": "19.06"},
+        {"Fecha": "2021", "TotalCrimenes": "19.17"}
+      ]
+    },
+    {
+      "name": "Robos con violencia",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "45.83"},
+        {"Fecha": "2018", "TotalCrimenes": "43.82"},
+        {"Fecha": "2019", "TotalCrimenes": "48.27"},
+        {"Fecha": "2020", "TotalCrimenes": "34.47"},
+        {"Fecha": "2021", "TotalCrimenes": "37.47"}
+      ]
+    },
+    {
+      "name": "Homidicios dolosos",
+      "values": [
+        {"Fecha": "2017", "TotalCrimenes": "236"},
+        {"Fecha": "2018", "TotalCrimenes": "228"},
+        {"Fecha": "2019", "TotalCrimenes": "249"},
+        {"Fecha": "2020", "TotalCrimenes": "232"},
+        {"Fecha": "2021", "TotalCrimenes": "206"}
+      ]
+    }
+]
